@@ -1,6 +1,6 @@
-# Lambda Url Shortner
+# Lambda Url shortener
 
-Basic url shortner using AWS Lambda and DynamoDB (uses shortid npm package)
+Basic url shortener using AWS Lambda and DynamoDB (uses [shortid](https://github.com/dylang/shortid) for shortToken)
 
 Inspiration from: [Build a serverless URL shortener with AWS Lambda and API Gateway services](http://www.davekonopka.com/2016/serverless-aws-lambda-api-gateway.html)
 
@@ -28,10 +28,12 @@ Inspiration from: [Build a serverless URL shortener with AWS Lambda and API Gate
 
 ### Commands
 ```sh
-# replace first {{AWS_ACCOUNT_NUMBER}} with you aws account number (command + F is your friend)
+# replace {{AWS_ACCOUNT_NUMBER}} first in api-swagger.yml and lambda/function/*/function.json with your aws account number
 terraform apply
-aws-api-import -c ./api-swagger.yml # you'll need to follow the instruction on https://github.com/awslabs/aws-apigateway-importer
 cd lambda && apex deploy
+
+# you'll need to follow the instructions on https://github.com/awslabs/aws-apigateway-importer
+aws-api-import -c ./api-swagger.yml
 ```
 
 ### Test Commands

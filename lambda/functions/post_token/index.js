@@ -10,7 +10,7 @@ exports.handle = (event, context) => {
   if (!event.targetUrl) return context.succeed({ shortToken: null, error: 'Missing targetUrl' });
   const targetUrl = String(event.targetUrl);
   const queryParams = {
-    TableName: 'UrlShortner',
+    TableName: 'UrlShortener',
     IndexName: 'targetUrl-index',
     KeyConditionExpression: 'targetUrl = :v_targetUrl',
     ExpressionAttributeValues: {
@@ -33,7 +33,7 @@ exports.handle = (event, context) => {
 
     // New
     const postParams = {
-      TableName: 'UrlShortner',
+      TableName: 'UrlShortener',
       Item: {
         shortToken: shortToken,
         targetUrl: targetUrl,

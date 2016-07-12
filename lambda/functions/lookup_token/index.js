@@ -11,7 +11,7 @@ function notFound(context) {
 exports.handle = (event, context) => {
   if (!event.shortToken) return notFound(context);
   const queryParams = {
-    TableName: 'UrlShortner',
+    TableName: 'UrlShortener',
     KeyConditionExpression: 'shortToken = :v_shortToken',
     ExpressionAttributeValues: {
       ':v_shortToken': String(event.shortToken),
@@ -25,10 +25,10 @@ exports.handle = (event, context) => {
       return notFound(context);
     }
     if ('Items' in data && data.Items.length > 0 && 'targetUrl' in data.Items[0]) {
-      const url = data.Items[0].targetUrl;
-      const content = `<html><body>Moved: <a href="${url}">${url}</a></body></html>`;
+      const targetUrl = data.Items[0].targetUrl;
+      const content = `<html><body>Moved: <a href="${targetUrl}">${targetUrl}</a></body></html>`;
       return context.succeed({
-        url,
+        targetUrl,
         content,
       });
     }

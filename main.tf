@@ -4,8 +4,8 @@ provider "aws" {
 	region = "${var.aws_region}"
 }
 
-resource "aws_dynamodb_table" "UrlShortner" {
-    name = "UrlShortner"
+resource "aws_dynamodb_table" "UrlShortener" {
+    name = "UrlShortener"
     read_capacity = 5
     write_capacity = 5
     hash_key = "shortToken"

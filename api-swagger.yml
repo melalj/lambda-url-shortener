@@ -52,7 +52,7 @@ paths:
             responseParameters:
               method.response.header.Cache-Control: "'private, max-age=90'"
               method.response.header.Content-Type: "'text/html'"
-              method.response.header.Location: "integration.response.body.destination_url"
+              method.response.header.Location: "integration.response.body.targetUrl"
             responseTemplates:
               text/html: "$input.path('$.content')"
           .*Not Found.*:
