@@ -1,0 +1,8 @@
+{
+  "name": "redir_lookup_token",
+  "description": "Retrieve url for token",
+  "runtime": "nodejs4.3",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::{{AWS_ACCOUNT_NUMBER}}:role/lambda_redir"
+}
