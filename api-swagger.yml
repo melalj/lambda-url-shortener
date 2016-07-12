@@ -5,7 +5,7 @@ info:
   title: "redir"
 basePath: "/"
 schemes:
-- "https"
+- "http"
 paths:
   /:
     post:
@@ -14,8 +14,6 @@ paths:
         200:
           description: "200 response"
           headers: {}
-      security:
-      - api_key: []
       x-amazon-apigateway-integration:
         responses:
           default:
@@ -25,10 +23,10 @@ paths:
         uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:{{AWS_ACCOUNT_NUMBER}}:function:redir_post_token/invocations"
         httpMethod: "POST"
         type: "aws"
-  /{token}:
+  /{shortToken}:
     get:
       parameters:
-      - name: "token"
+      - name: "shortToken"
         in: "path"
         required: true
         type: "string"
@@ -64,16 +62,10 @@ paths:
             responseTemplates:
               text/html: "$input.path('$.errorMessage')"
         requestTemplates:
-          application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"token\" :\
-            \ \"$input.params('token')\"\n}"
-          text/html: "#set($inputRoot = $input.path('$'))\n{\n  \"token\" : \"$input.params('token')\"\
+          application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"shortToken\" :\
+            \ \"$input.params('shortToken')\"\n}"
+          text/html: "#set($inputRoot = $input.path('$'))\n{\n  \"shortToken\" : \"$input.params('shortToken')\"\
             \n}"
         uri: "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:{{AWS_ACCOUNT_NUMBER}}:function:redir_lookup_token/invocations"
         httpMethod: "POST"
         type: "aws"
-securityDefinitions:
-  api_key:
-    type: "apiKey"
-    name: "x-api-key"
-    in: "header"
-definitions: {}
